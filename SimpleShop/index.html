@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Shopping List</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/app.js"></script>
+</head>
+<body>
+    <div id="createListContainer">
+        <h1>Shopping List</h1>
+        <input type="text" id="shoppingListName" placeholder="New List" />
+        <button onclick="createShoppingList()">Create</button>
+    </div>
+    <div id="shoppingListContainer" style="display:none;">
+        <h4 id="shoppingListTitle">New List</h4>
+        <input id="newItem" type="text" placeholder="New Item" />
+        <button onclick="addItem()">Add</button>
+        <ul id="shoppingListItems"></ul>
+    </div>
+</body>
+</html>
