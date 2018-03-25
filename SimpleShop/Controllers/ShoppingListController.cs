@@ -13,9 +13,9 @@ namespace SimpleShop.Controllers
     {
         public static List<ShoppingList> shoppingLists = new List<ShoppingList> {
             new ShoppingList() { Id=0, Name = "Groceries", Items = {
-                       new Item {Name ="Milk"},
-                       new Item {Name ="Ceral"},
-                       new Item {Name ="Boxs"},
+                       new Item {Id=0, Name ="Milk", ShoppingListId = 0 },
+                       new Item {Id=1, Name ="Ceral", ShoppingListId = 0},
+                       new Item {Id=2, Name ="Boxs", ShoppingListId = 0},
                 }
             }
         };
