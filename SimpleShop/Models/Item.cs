@@ -14,7 +14,6 @@ namespace SimpleShop.Models {
             Id = 0;
             Name = String.Empty;
             Checked = false;
-            ShoppingListId = -1;
         }
     }
 }

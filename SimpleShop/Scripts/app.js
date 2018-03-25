@@ -49,7 +49,8 @@ function addItem() {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: "api/Item/",
+        contentType: 'application/json; charset=utf-8',
+        url: "api/Item",
         data: newItem,
         success: function (result) {
             currentList = result;
@@ -65,8 +66,8 @@ function drawItems() {
     for (var i = 0; i < currentList.items.length; i++) {
         var currentItem = currentList.items[i];
         var $li = $("<li>").html(currentItem.name).attr("id", "item_" + i);
-        var $deleteBtn = $("<button onclick='deleteItem("+ i +")'>X</button>").appendTo($li);
-        var $checkBtn = $("<button onclick='checkItem(" + i +")'>C</button>").appendTo($li);
+        var $deleteBtn = $("<button onclick='deleteItem("+ currentItem.id +")'>X</button>").appendTo($li);
+        var $checkBtn = $("<button onclick='checkItem(" + currentItem.id +")'>C</button>").appendTo($li);
 
         if (currentItem.checked) {
             $li.addClass("Checked");
@@ -76,10 +77,19 @@ function drawItems() {
     }
 }
 
-function deleteItem(index) {
-    currentList.items.splice(index, 1);
-    drawItems();
-}
+function deleteItem(item) {
+    $.ajax({
+        type: 'DELETE',
+        dataType: 'json',
+        url: "api/Item/" + itemId,
+        data: newItem,
+        success: function (result) {
+            currentList = result;
+            drawItems();
+        }
+    });
+ }
+
 
 function checkItem(index) {
     var item = currentList.items[index];

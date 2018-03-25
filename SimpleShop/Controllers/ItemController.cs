@@ -16,7 +16,7 @@ namespace SimpleShop.Controllers
         public IHttpActionResult Post([FromBody]Item item)
         {
             ShoppingList shoppingList =
-                ShoppingListController.shoppingLists.Where(s => s.Id == item.ShoppingListId).FirstOrDefault();
+               ShoppingListController.shoppingLists.Where(s => s.Id == item.ShoppingListId).FirstOrDefault();
             
             if(shoppingList == null) {
                 return NotFound();
