@@ -23,15 +23,14 @@ function showShoppingList() {
 
 function getShoppingListById(id) {
     $.ajax({
-        type: "GET",
-        dataType: "json",
+        type: 'GET',
+        dataType: 'json',
         url: "api/ShoppingList/" + id,
         success: function (result) {
             currentList = result;
             showShoppingList();
             drawItems();
         }
-
     });
 }
 
@@ -71,6 +70,12 @@ function checkItem(index) {
 
 $(document).ready(function () {
     console.info("ready");
+    var pageUrl = window.location.href;
+    var idIndex = pageUrl.indexOf("?id=");
+    if (idIndex !== -1) {
+        getShoppingListById(pageUrl.substring(idIndex + 4));
+    }
+
     $("#shoppingListName").focus();
     $("#shoppingListName").keyup(function (ev) {
         if (ev.keyCode === 13) {

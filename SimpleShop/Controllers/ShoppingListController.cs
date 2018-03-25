@@ -11,8 +11,12 @@ namespace SimpleShop.Controllers
     public class ShoppingListController : ApiController
     {
         List<ShoppingList> shoppingLists = new List<ShoppingList> {
-            new ShoppingList() { Id=0, Name = "Groceries"},
-            new ShoppingList() { Id=1, Name = "Hardware"}
+            new ShoppingList() { Id=0, Name = "Groceries", Items = {
+                       new Item {Name ="Milk"},
+                       new Item {Name ="Ceral"},
+                       new Item {Name ="Boxs"},
+                }
+            }
         };
 
 
