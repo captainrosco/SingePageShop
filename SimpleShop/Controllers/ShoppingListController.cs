@@ -23,9 +23,13 @@ namespace SimpleShop.Controllers
         }
 
         // GET: api/ShoppingList/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            ShoppingList result = shoppingLists.FirstOrDefault(s => s.Id == id);
+            if(result == null) {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // POST: api/ShoppingList
