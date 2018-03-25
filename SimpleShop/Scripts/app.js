@@ -21,6 +21,20 @@ function showShoppingList() {
     });
 }
 
+function getShoppingListById(id) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "api/ShoppingList/" + id,
+        success: function (result) {
+            currentList = result;
+            showShoppingList();
+            drawItems();
+        }
+
+    });
+}
+
 function addItem() {
     var newItem = {};
     newItem.name = $("#newItem").val();
