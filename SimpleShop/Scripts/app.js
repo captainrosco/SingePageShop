@@ -45,10 +45,20 @@ function getShoppingListById(id) {
 function addItem() {
     var newItem = {};
     newItem.name = $("#newItem").val();
-    currentList.items.push(newItem);
-    $("#newItem").val('');
+    newItem.showShoppingListId = currentList.id;
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "api/ShoppingList/",
+        data: newItem,
+        success: function (result) {
+            currentList = result;
+            drawItems();
+            $("#newItem").val("");
+        }
+    });
 
-    drawItems();
+  
 }
 
 function drawItems() {
