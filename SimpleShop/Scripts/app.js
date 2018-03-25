@@ -15,10 +15,10 @@ function showShoppingList() {
 
     $("#newItem").focus();
     $("#newItem").keyup(function (ev) {
-        if (ev.keyCode == 13) {
+        if (ev.keyCode === 13) {
             addItem();
         }
-    })
+    });
 }
 
 function addItem() {
@@ -59,7 +59,7 @@ $(document).ready(function () {
     console.info("ready");
     $("#shoppingListName").focus();
     $("#shoppingListName").keyup(function (ev) {
-        if (ev.keyCode == 13) {
+        if (ev.keyCode === 13) {
             createShoppingList();
         }
     });
