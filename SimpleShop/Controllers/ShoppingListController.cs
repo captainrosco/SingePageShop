@@ -1,5 +1,6 @@
 ﻿using SimpleShop.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -37,8 +38,11 @@ namespace SimpleShop.Controllers
         }
 
         // POST: api/ShoppingList
-        public void Post([FromBody]string value)
+        public IEnumerable Post([FromBody]ShoppingList newList)
         {
+            newList.Id = shoppingLists.Count;
+            shoppingLists.Add(newList);
+            return shoppingLists;
         }
 
         // PUT: api/ShoppingList/5

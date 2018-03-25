@@ -4,7 +4,15 @@ function createShoppingList() {
     currentList.name = $("#shoppingListName").val();
     currentList.items = new Array();
 
-    showShoppingList();
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: "api/ShoppingList/",
+        data: currentList,
+        success: function (result) {            
+            showShoppingList();
+        }
+    });
 }
 
 function showShoppingList() {
