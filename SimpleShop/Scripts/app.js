@@ -49,7 +49,7 @@ function addItem() {
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: "api/ShoppingList/",
+        url: "api/Item/",
         data: newItem,
         success: function (result) {
             currentList = result;
@@ -57,8 +57,6 @@ function addItem() {
             $("#newItem").val("");
         }
     });
-
-  
 }
 
 function drawItems() {
@@ -69,6 +67,11 @@ function drawItems() {
         var $li = $("<li>").html(currentItem.name).attr("id", "item_" + i);
         var $deleteBtn = $("<button onclick='deleteItem("+ i +")'>X</button>").appendTo($li);
         var $checkBtn = $("<button onclick='checkItem(" + i +")'>C</button>").appendTo($li);
+
+        if (currentItem.checked) {
+            $li.addClass("Checked");
+        }
+
         $li.appendTo($list);
     }
 }
@@ -79,11 +82,21 @@ function deleteItem(index) {
 }
 
 function checkItem(index) {
-    if ($("#item_" + index).hasClass("checked")) {
-        $("#item_" + index).removeClass("checked");
-    } else {
-        $("#item_" + index).addClass("checked");
-    }
+    var item = currentList.items[index];
+    item.checked = !item.checked;
+
+    $.ajax({
+        type: 'PUT',
+        dataType: 'json',
+        url: "api/Item/" + index,
+        data: item,
+        success: function (result) {
+            currentList = result;
+            drawItems();
+        }
+    });
+
+
 }
 
 $(document).ready(function () {

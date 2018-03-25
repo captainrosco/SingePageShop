@@ -45,8 +45,19 @@ namespace SimpleShop.Controllers
         }
 
         // DELETE: api/Item/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            ShoppingList shoppingList = ShoppingListController.shoppingLists[0];
+
+            Item item = shoppingList.Items.FirstOrDefault(i => i.Id == id);
+
+            if (item == null) {
+                return NotFound();
+            }
+
+            shoppingList.Items.Remove(item);
+
+            return Ok(shoppingList);
         }
     }
 }
